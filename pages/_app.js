@@ -1,9 +1,14 @@
 import '../styles/globals.css'
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
+import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client'
+
+const link = createHttpLink({
+  uri: 'http://localhost:4000/',
+  credentials: 'include'
+})
 
 const client = new ApolloClient({
-  uri: 'http://localhost:4000/',
-  cache: new InMemoryCache()
+  cache: new InMemoryCache(),
+  link
 })
 function MyApp({ Component, pageProps }) {
   return (

@@ -1,7 +1,20 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
+import { useMutation, gql } from '@apollo/client'
+
+const USERS = gql`
+mutation {
+  signUp(user: {email: "rosieneguerra@gmail.com", password: "foobar"}) {
+    email
+  }
+}
+`
 
 export default function Home() {
+  const [signUp] = useMutation(USERS)
+  let a = signUp()
+  console.log(a)
+
   return (
     <div className={styles.container}>
       <Head>
@@ -10,6 +23,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
+
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
