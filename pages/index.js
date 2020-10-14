@@ -2,13 +2,7 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import { useMutation, useQuery, gql } from '@apollo/client'
 
-const USERS = gql`
-mutation {
-  signUp(user: {email: "rosieneguerra@gmail.com", password: "foobar"}) {
-    email
-  }
-}
-`
+
 
 const currentUser = gql`
   query {
@@ -19,8 +13,6 @@ const currentUser = gql`
 `
 
 export default function Home() {
-  const [signUp] = useMutation(USERS)
-  let a = signUp()
   const { loading, error, data } = useQuery(currentUser)
   if (loading || error) return <p>error</p>
   console.log(data)
