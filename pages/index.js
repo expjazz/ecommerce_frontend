@@ -4,14 +4,6 @@ import { useMutation, useQuery, gql } from '@apollo/client'
 
 
 
-const currentUser = gql`
-  query {
-    currentUser {
-      email
-    }
-  }
-`
-
 export default function Home() {
   const { loading, error, data } = useQuery(currentUser)
   if (loading || error) return <p>error</p>
